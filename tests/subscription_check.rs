@@ -26,17 +26,17 @@ async fn subscribe_returns_a_400_for_invalid_form_data() {
     // Arrange
     let listen = spawn_app();
     let client = reqwest::Client::new();
-    let test_case = vec![
+    let test_cases = vec![
         ("name=le%20guin", "missing the email"),
         ("email=ursula_le_guin%40gmail.com", "missing the name"),
         ("", "missing both name and email"),
     ];
 
-    for (invalid_body, error_message) in test_case {
+    for (invalid_body, error_message) in test_cases {
         // Act
         let response = client
             .post(&format!("{}/subscriptions", &listen))
-            .header("Content-Type", "x-www-form-urlencoded")
+            .header("Content-Type", "application/x-www-form-urlencoded")
             .body(invalid_body)
             .send()
             .await
