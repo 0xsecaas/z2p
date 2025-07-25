@@ -29,7 +29,7 @@ DB_NAME="${POSTGRES_DB:=newsletter}"
 DB_PORT="${POSTGRES_PORT:=5432}"
 
 # Allow to skip Docker if a dockerized Postgres database is already running
-if [[-x "${SKIP_DOCKER}"]]; then
+if [[ -z "${SKIP_DOCKER}" ]]; then
   # Launch postgres using docker
   docker run \
     -e POSTGRES_USER=${DB_USER} \
