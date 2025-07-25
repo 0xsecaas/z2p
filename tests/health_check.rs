@@ -6,7 +6,7 @@ use common::spawn_app;
 // no need to add #[test]
 async fn health_check_works() {
     // Arrange
-    let address = spawn_app();
+    let address = spawn_app().await;
 
     //let client = reqwest::Client::new();
     let client = reqwest::Client::builder()
