@@ -6,7 +6,7 @@ use common::spawn_app;
 // no need to add #[test]
 async fn health_check_works() {
     // Arrange
-    let address = spawn_app().await;
+    let app = spawn_app().await;
 
     //let client = reqwest::Client::new();
     let client = reqwest::Client::builder()
@@ -15,7 +15,7 @@ async fn health_check_works() {
         .expect("Failed to build client");
     // Act
     let response = client
-        .get(&format!("{}/health_check", &address))
+        .get(&format!("{}/health_check", &app.address))
         .send()
         .await
         .expect("Failed to execute request.");
