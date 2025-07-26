@@ -1,6 +1,6 @@
-use sqlx::{Connection, PgConnection};
+use sqlx::PgPool;
 use std::net::TcpListener;
-use zero2prod::configuration::{self, get_configuration};
+use zero2prod::configuration::get_configuration;
 use zero2prod::startup::run;
 
 // You can inspect what code gets generated using
@@ -8,7 +8,7 @@ use zero2prod::startup::run;
 pub async fn spawn_app() -> String {
     let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind to random port");
     let configuration = get_configuration().expect("Failed to read configuration");
-    let connection = PgConnection::connect(&configuration.database.connection_string())
+    let connection = PgPool::connect(&configuration.database.connection_string())
         .await
         .expect("Failed to connect to Postgres");
 

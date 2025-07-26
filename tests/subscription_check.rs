@@ -1,7 +1,7 @@
 mod common;
 use common::spawn_app;
 use sqlx::{Connection, PgConnection};
-use zero2prod::configuration::{self, get_configuration};
+use zero2prod::configuration::get_configuration;
 
 #[actix_rt::test]
 async fn subscribe_returns_a_200_for_valid_form_data() {
