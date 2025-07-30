@@ -1,4 +1,3 @@
-use env_logger::Env;
 use sqlx::PgPool;
 use std::net::TcpListener;
 use tracing::subscriber::set_global_default;
