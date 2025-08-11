@@ -25,8 +25,6 @@ sqlx = { version = "0.8", default-features = false, features = [
 ] }
 uuid = { version = "1", features = ["v4"] }
 chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
-env_logger = "0.11.8"
-log = "0.4.27"
 tracing = { version = "0.1", features = ["log"] }
 tracing-futures = "0.2.5"
 tracing-subscriber = { version = "0.3.1", features = [
@@ -34,21 +32,10 @@ tracing-subscriber = { version = "0.3.1", features = [
   "env-filter",
 ] }
 tracing-bunyan-formatter = "0.3.1"
+tracing-log = "0.2.0"
 
 
 [dev-dependencies]
 actix-rt = "2"
 reqwest = { version = "0.12", features = ["json"] }
 tokio = "1"
-
-# [dependencies.sqlx]
-# version = "0.5.7"
-# default-features = false
-# features = [
-#     "runtime-actix-rustls", 
-#     "macros", 
-#     "postgres", 
-#     "uuid", 
-#     "chrono", 
-#     "migrate"
-# ]
