@@ -18,14 +18,13 @@ WORKDIR /app
 ENV SQLX_OFFLINE=true
 
 # Bring back dep build cache
-COPY --from=cacher /app/target target
 COPY . .
 # Optional: speed up incremental linking
 # ENV RUSTFLAGS="-C link-arg=-Wl,-O1"
 # Keep cache mount only for dependencies
 RUN --mount=type=cache,target=/usr/local/cargo/registry cargo build --release --locked
 
-# ^ BuildKit mounts avoid re-downloading registry and re-compiling unchanged units
+# BuildKit mounts avoid re-downloading registry and re-compiling unchanged units
 
 
 ########## Minimal runtime ##########
