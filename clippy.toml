@@ -2,4 +2,4 @@
 # This rule is to allow unused variables in the whole project
 # Note: This is generally not recommended for production code as it can lead to code bloat
 # and potential bugs going unnoticed, but it can be useful during development.
-msrv = "1.30.0"
+msrv = "1.34.0"
