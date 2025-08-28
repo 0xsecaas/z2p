@@ -21,3 +21,5 @@ echo "[4] Cleanup dangling images..."
 docker image prune -f
 
 echo "[OK] Container updated."
+
+docker logs -f $APP_NAME

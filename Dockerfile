@@ -34,7 +34,8 @@ WORKDIR /app
 # Install system libs your binary needs (e.g., ca-certificates, tzdata)
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /app/target/release/zero2prod /app/zero2prod
-COPY --from=builder /app/configuration.yaml /app/configuration.yaml
+COPY --from=builder /app/configuration/* /app/configuration/
 RUN chmod +x /app/zero2prod
 USER 1000
+ENV Z2P_ENVIRONMENT production
 ENTRYPOINT ["/app/zero2prod"]
