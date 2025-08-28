@@ -1,11 +1,11 @@
 ########## Builder + cache priming ##########
-FROM rust:1.88.0 AS chef 
+FROM rust:1.88.0-slim AS chef 
 RUN cargo install cargo-chef --locked
 WORKDIR /app
 COPY Cargo.toml Cargo.lock ./ 
 RUN cargo chef prepare --recipe-path recipe.json 
 
-FROM rust:1.88.0 AS cacher 
+FROM rust:1.88.0-slim AS cacher 
 WORKDIR /app 
 RUN cargo install cargo-chef --locked
 COPY --from=chef /app/recipe.json recipe.json 
@@ -13,7 +13,7 @@ RUN cargo chef cook --release --recipe-path recipe.json
 
 
 ########## Build z2p ##########
-FROM rust:1.88.0 AS builder 
+FROM rust:1.88.0-slim AS builder 
 WORKDIR /app
 ENV SQLX_OFFLINE=true
 

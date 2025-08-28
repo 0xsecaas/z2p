@@ -41,3 +41,9 @@ actix-rt = "2"
 once_cell = "1.21.3"
 reqwest = { version = "0.12", features = ["json"] }
 tokio = "1"
+
+# [profile.release]
+# opt-level = "z"   # Optimize for size.
+# strip = true      # Strip symbols from the binary
+# codegen-units = 1 # Maximum size reduction optimizations
+# panic = "abort"   # disable unwinding and helpful backtrace

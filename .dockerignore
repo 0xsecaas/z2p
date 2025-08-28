@@ -1,4 +1,9 @@
+.env
 target/
+tests/
+Dockerfile
+scripts/
+migrations/
 .git/
 *.bk
 node_modules/
