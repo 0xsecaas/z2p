@@ -1,0 +1,4 @@
+target/
+.git/
+*.bk
+node_modules/
