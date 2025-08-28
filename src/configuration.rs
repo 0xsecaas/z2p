@@ -1,5 +1,9 @@
+use log;
 use serde_aux::field_attributes::deserialize_number_from_string;
-use sqlx::postgres::{PgConnectOptions, PgSslMode};
+use sqlx::{
+    ConnectOptions,
+    postgres::{PgConnectOptions, PgSslMode},
+};
 
 #[derive(serde::Deserialize)]
 pub struct Settings {
@@ -39,10 +43,13 @@ impl DatabaseSettings {
             .password(&self.password)
             .port(self.port)
             .ssl_mode(ssl_mode)
+            .log_statements(log::LevelFilter::Trace)
     }
 
     pub fn with_db(&self) -> PgConnectOptions {
-        self.without_db().database(&self.database_name)
+        self.without_db()
+            .database(&self.database_name)
+            .log_statements(log::LevelFilter::Trace)
     }
 }
 
